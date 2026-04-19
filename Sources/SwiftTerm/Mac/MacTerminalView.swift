@@ -748,7 +748,8 @@ open class TerminalView: NSView, NSTextInputClient, NSUserInterfaceValidations, 
         if response {
             caretView.disableAnimations()
             hasFocus = false
-            terminal.setTerminalFocus(false)
+            // Do not emit focus-out. Ink-based TUIs (e.g. GitHub Copilot) drop
+            // input events when they think the terminal is backgrounded.
         }
         return response
     }
